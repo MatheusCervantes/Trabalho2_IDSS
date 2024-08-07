@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "senha_da_nasa";
 $dbname = "carrosDB";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

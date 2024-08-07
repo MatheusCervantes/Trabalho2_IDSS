@@ -14,8 +14,8 @@ services:
   db:
     build: ./db
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: senha_da_nasa
+      MYSQL_ROOT_PASSWORD: senha_da_nasa
+      MYSQL_DATABASE: carrosDB
     ports:
       - "3306:3306"
     deploy:
@@ -34,7 +34,7 @@ services:
       PMA_USER: root
       PMA_PASSWORD: senha_da_nasa
     ports:
-      - "80:80"
+      - "81:80"
     deploy:
       resources:
         limits:
