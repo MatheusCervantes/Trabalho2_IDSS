@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  app:
+    build: ./app
+    ports:
+      - "80:80"
+    deploy:
+      resources:
+        limits:
+          memory: 300M
+          cpus: '1.0'
+  
+  db:
+    build: ./db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: senha_da_nasa
+    ports:
+      - "3306:3306"
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+          cpus: '1.0'
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./db/data/script.sql:/docker-entrypoint-initdb.d/script.sql
+
+  db-admin:
+    build: ./db-admin
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: senha_da_nasa
+    ports:
+      - "80:80"
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+          cpus: '4.0'
+
+volumes:
+  db-data:
