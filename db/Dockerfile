@@ -1,4 +1,0 @@
-FROM mysql:8.0.39
-
-ENV MYSQL_ROOT_PASSWORD=senha_da_nasa
-ENV MYSQL_DATABASE=carrosDB
