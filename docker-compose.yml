@@ -12,9 +12,9 @@ services:
           cpus: '1.0'
   
   db:
-    build: ./db
+    image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: senha_da_nasa
+      MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: carrosDB
     ports:
       - "3306:3306"
@@ -24,8 +24,7 @@ services:
           memory: 500M
           cpus: '1.0'
     volumes:
-      - db-data:/var/lib/mysql
-      - ./db/data/script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   db-admin:
     build: ./db-admin

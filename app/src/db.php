@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = "db";
 $username = "root";
 $password = "senha_da_nasa";
 $dbname = "carrosDB";
