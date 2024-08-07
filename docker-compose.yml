@@ -5,6 +5,8 @@ services:
     build: ./app
     ports:
       - "80:80"
+    depends_on:
+      - db  
     deploy:
       resources:
         limits:
