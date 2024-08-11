@@ -5,6 +5,8 @@ services:
     build: ./app
     ports:
       - "80:80"
+    volumes:
+      - ./app/src:/var/www/html  
     depends_on:
       - db  
     deploy:
