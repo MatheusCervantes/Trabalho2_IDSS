@@ -7,6 +7,27 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 ?>
 
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $modelo = $_POST['modelo'];
+    $marca = $_POST['marca'];
+    $ano = $_POST['ano'];
+    $cor = $_POST['cor'];
+    $placa = $_POST['placa'];
+    $nro_chassi = $_POST['nro_chassi'];
+
+    $sql = "UPDATE carros SET modelo='$modelo', marca='$marca', ano='$ano', cor='$cor', placa='$placa', nro_chassi='$nro_chassi' WHERE id=$id";
+
+    if ($conn->query($sql) === TRUE) {
+        header('Location: index.php');
+    } else {
+        echo "Erro: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -67,24 +88,3 @@ $row = $result->fetch_assoc();
 </body>
 
 </html>
-
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $modelo = $_POST['modelo'];
-    $marca = $_POST['marca'];
-    $ano = $_POST['ano'];
-    $cor = $_POST['cor'];
-    $placa = $_POST['placa'];
-    $nro_chassi = $_POST['nro_chassi'];
-
-    $sql = "UPDATE carros SET modelo='$modelo', marca='$marca', ano='$ano', cor='$cor', placa='$placa', nro_chassi='$nro_chassi' WHERE id=$id";
-
-    if ($conn->query($sql) === TRUE) {
-        header('Location: index.php');
-    } else {
-        echo "Erro: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-}
-?>

@@ -1,3 +1,26 @@
+<?php
+include 'db.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $modelo = $_POST['modelo'];
+    $marca = $_POST['marca'];
+    $ano = $_POST['ano'];
+    $cor = $_POST['cor'];
+    $placa = $_POST['placa'];
+    $nro_chassi = $_POST['nro_chassi'];
+
+    $sql = "INSERT INTO carros (modelo, marca, ano, cor, placa, nro_chassi) VALUES ('$modelo', '$marca', '$ano', '$cor', '$placa', '$nro_chassi')";
+
+    if ($conn->query($sql) === TRUE) {
+        header('Location: index.php');
+    } else {
+        echo "Erro: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -58,26 +81,3 @@
 </body>
 
 </html>
-
-<?php
-include 'db.php';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $modelo = $_POST['modelo'];
-    $marca = $_POST['marca'];
-    $ano = $_POST['ano'];
-    $cor = $_POST['cor'];
-    $placa = $_POST['placa'];
-    $nro_chassi = $_POST['nro_chassi'];
-
-    $sql = "INSERT INTO carros (modelo, marca, ano, cor, placa, nro_chassi) VALUES ('$modelo', '$marca', '$ano', '$cor', '$placa', '$nro_chassi')";
-
-    if ($conn->query($sql) === TRUE) {
-        header('Location: index.php');
-    } else {
-        echo "Erro: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-}
-?>
