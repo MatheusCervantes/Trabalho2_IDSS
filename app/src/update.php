@@ -5,9 +5,7 @@ $id = $_GET['id'];
 $sql = "SELECT * FROM carros WHERE id=$id";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-?>
 
-<?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $modelo = $_POST['modelo'];
     $marca = $_POST['marca'];
